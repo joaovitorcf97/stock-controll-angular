@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { MessageService } from 'primeng/api';
 import { AuthRequest } from 'src/app/models/interfaces/user/auth/AuthRequest';
 import { SignupUserResquest } from 'src/app/models/interfaces/user/signupUserRequest';
 import { UserService } from 'src/app/services/user/user.service';
@@ -16,7 +17,8 @@ export class HomeComponent {
   constructor(
     private formbuilder: FormBuilder,
     private userService: UserService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private messageService: MessageService
   ) {}
 
   loginForm = this.formbuilder.group({
@@ -36,8 +38,20 @@ export class HomeComponent {
         next: (response) => {
           this.cookieService.set('USER_INFO', response?.token);
           this.loginForm.reset();
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Sucesso',
+            detail: `Bem vindo de volta ${response?.name}`,
+            life: 2000,
+          });
         },
         error: (error) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: `Erro ao fazer login`,
+            life: 2000,
+          });
           console.log(error);
         },
       });
@@ -54,9 +68,21 @@ export class HomeComponent {
               console.log('Usuario teste criado com sucesso');
               this.signupForm.reset();
               this.loginCard = true;
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Sucesso',
+                detail: `Usuário ${response?.name} criado com sucesso`,
+                life: 2000,
+              });
             }
           },
           error: (error) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: `Erro ao criar usuário`,
+              life: 2000,
+            });
             console.log(error);
           },
         });
