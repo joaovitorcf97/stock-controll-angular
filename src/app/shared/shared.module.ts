@@ -6,6 +6,7 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ToolbarNavigationComponent } from './components/toolbar-navigation/toolbar-navigation.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [ToolbarNavigationComponent],
@@ -16,6 +17,7 @@ import { ToolbarNavigationComponent } from './components/toolbar-navigation/tool
     ToolbarModule,
     CardModule,
     ButtonModule,
+    RouterModule,
   ],
   providers: [DialogService, CurrencyPipe],
   exports: [ToolbarNavigationComponent],
