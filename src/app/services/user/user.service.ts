@@ -27,7 +27,9 @@ export class UserService {
     return this.http.post<AuthResponse>(`${this.API_URL}/auth`, requestData);
   }
 
-  // isLoggedIn(): boolean {
-  //   const JWT_TOKEN = this.cookie.get('USER_INFO');
-  // }
+  isLoggedIn(): boolean {
+    const JWT_TOKEN = this.cookie.get('USER_INFO');
+
+    return JWT_TOKEN ? true : false;
+  }
 }
