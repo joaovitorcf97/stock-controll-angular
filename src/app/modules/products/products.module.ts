@@ -19,9 +19,15 @@ import { RouterModule } from '@angular/router';
 import { PRODUCTS_ROUTES } from './products.routing';
 import { ProductsTableComponent } from './components/products-table/products-table.component';
 import { TooltipModule } from 'primeng/tooltip';
+import { ProductFormComponent } from './components/product-form/product-form.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
-  declarations: [ProductsPageComponent, ProductsTableComponent],
+  declarations: [
+    ProductsPageComponent,
+    ProductsTableComponent,
+    ProductFormComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -41,6 +47,7 @@ import { TooltipModule } from 'primeng/tooltip';
     ConfirmDialogModule,
     ToolbarModule,
     TooltipModule,
+    DropdownModule,
   ],
   providers: [DialogService, ConfirmationService],
 })
